@@ -49,18 +49,30 @@ const Hero: React.FC = () => {
   return (
     <section id="home" className="min-h-screen flex items-center justify-center section-padding pt-20 relative overflow-hidden">
       {/* Enhanced Profile Image - Mobile Optimized */}
-      <div className="absolute top-8 right-2 sm:top-12 sm:right-4 md:top-16 md:right-8 lg:top-20 lg:right-12 xl:right-16 z-20">
+      <div
+        className="absolute z-20"
+        style={{
+          top: '2rem',
+          right: '2.5rem',
+          // Responsive adjustments
+          ...(window.innerWidth >= 640 ? { top: '3rem', right: '3.5rem' } : {}),
+          ...(window.innerWidth >= 768 ? { top: '4rem', right: '5rem' } : {}),
+          ...(window.innerWidth >= 1024 ? { top: '5rem', right: '7rem' } : {}),
+          ...(window.innerWidth >= 1280 ? { top: '6rem', right: '9rem' } : {}),
+        }}
+      >
         <div className="relative group">
           {/* Main Image with Mobile-Optimized Size */}
           <img
             src={profileImg}
             alt="Andrew Gamal profile"
-            className="w-28 h-28 sm:w-32 sm:h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 xl:w-56 xl:h-56 object-cover animate-fade-in hover:scale-105 transition-all duration-500"
+            className="w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 lg:w-36 lg:h-36 xl:w-40 xl:h-40 object-cover animate-fade-in hover:scale-105 transition-all duration-500"
             style={{
               clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)',
               filter: 'drop-shadow(0 10px 25px rgba(0, 0, 0, 0.4)) brightness(1.05) contrast(1.05)',
               border: '2px solid rgba(59, 130, 246, 0.4)',
-              transform: 'rotate(-8deg)'
+              transform: 'rotate(-8deg)',
+              objectPosition: 'top'
             }}
           />
           
@@ -132,12 +144,12 @@ const Hero: React.FC = () => {
           </p>
           
           {/* Stats - Mobile Optimized */}
-          <div className="grid grid-cols-2 gap-4 sm:gap-8 mb-12 sm:mb-16 animate-slide-up w-full max-w-xs sm:max-w-none">
+          <div className="flex justify-center mb-12 sm:mb-16 animate-slide-up w-full">
             <div className="text-center">
               <div className="text-2xl sm:text-3xl font-bold text-primary-400 mb-1 sm:mb-2">8+</div>
               <div className="text-gray-400 text-xs sm:text-sm">Projects Completed</div>
             </div>
-            <div className="text-center">
+            <div className="text-center ml-8 sm:ml-12 md:ml-16">
               <div className="text-2xl sm:text-3xl font-bold text-gold-400 mb-1 sm:mb-2">1+</div>
               <div className="text-gray-400 text-xs sm:text-sm">Years Experience</div>
             </div>
