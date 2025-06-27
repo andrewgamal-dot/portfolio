@@ -1,13 +1,94 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply bg-hero-gradient bg-fixed text-gray-100 font-sans;
+    background-blend-mode: overlay;
+  }
+  
+  ::selection {
+    @apply bg-gold-300/30 text-gold-900;
+  }
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+@layer components {
+  .section-padding {
+    @apply py-20 px-4 sm:px-6 lg:px-8;
+  }
+  
+  .container-custom {
+    @apply max-w-7xl mx-auto;
+  }
+  
+  .gradient-text {
+    @apply bg-gradient-to-r from-primary-400 via-gold-400 to-accent-400 bg-clip-text text-transparent;
+  }
+  
+  .card {
+    @apply bg-card-glass border border-dark-700/40 rounded-2xl p-8 shadow-glow backdrop-blur-md transition-all duration-300;
+  }
+  
+  .btn-primary {
+    @apply bg-gradient-to-r from-primary-500 to-gold-400 hover:from-primary-400 hover:to-gold-300 text-white font-semibold py-3 px-8 rounded-xl shadow-glow transition-all duration-300 transform hover:scale-105;
+  }
+  
+  .btn-secondary {
+    @apply bg-gradient-to-r from-dark-700 to-dark-600 hover:from-dark-600 hover:to-dark-500 text-gray-100 font-semibold py-3 px-8 rounded-xl border border-dark-500 hover:border-gold-400 shadow-glow transition-all duration-300 transform hover:scale-105;
+  }
+  
+  .btn-outline {
+    @apply border-2 border-gold-400 text-gold-400 hover:bg-gold-400 hover:text-primary-900 font-semibold py-3 px-8 rounded-xl transition-all duration-300 transform hover:scale-105;
+  }
+  
+  .skill-tag {
+    @apply bg-gradient-to-r from-dark-700 to-dark-600 text-primary-200 px-4 py-2 rounded-full text-sm font-medium border border-dark-500 hover:border-gold-400 transition-all duration-200;
+  }
+  
+  .nav-link {
+    @apply text-gray-300 hover:text-gold-400 transition-all duration-200 font-medium relative group;
+  }
+  
+  .nav-link::after {
+    content: '';
+    @apply absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-primary-400 to-gold-400 transition-all duration-300 group-hover:w-full;
+  }
+  
+  .section-title {
+    @apply text-4xl md:text-5xl lg:text-6xl font-bold text-gray-100 mb-6;
+  }
+  
+  .section-divider {
+    @apply w-24 h-1 bg-gradient-to-r from-primary-500 to-gold-400 mx-auto mb-8;
+  }
+  
+  .project-card {
+    @apply card group hover:shadow-glow-accent transform hover:scale-105 transition-all duration-300;
+  }
+  
+  .featured-badge {
+    @apply absolute top-4 left-4 bg-gradient-to-r from-gold-400 to-primary-500 text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg;
+  }
+  
+  .status-badge {
+    @apply absolute top-4 right-4 bg-gradient-to-r from-dark-800/90 to-dark-700/90 text-gray-300 px-3 py-1 rounded-full text-sm font-medium backdrop-blur-sm;
+  }
+  
+  .input-field {
+    @apply w-full px-4 py-3 bg-card-glass border border-dark-500 rounded-xl text-gray-100 placeholder-gray-400 focus:outline-none focus:border-gold-400 focus:shadow-glow transition-all duration-200;
+  }
+  
+  .textarea-field {
+    @apply w-full px-4 py-3 bg-card-glass border border-dark-500 rounded-xl text-gray-100 placeholder-gray-400 focus:outline-none focus:border-gold-400 focus:shadow-glow transition-all duration-200 resize-none;
+  }
+  
+  .social-link {
+    @apply text-gray-400 hover:text-gold-400 transition-all duration-200 p-3 hover:bg-dark-700 rounded-xl hover:shadow-glow-accent;
+  }
 }
