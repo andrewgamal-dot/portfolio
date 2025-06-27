@@ -159,18 +159,12 @@ const Contact: React.FC = () => {
             <form 
               onSubmit={handleSubmit} 
               className="space-y-6"
-              name="contact"
+              action="https://api.web3forms.com/submit"
               method="POST"
-              data-netlify="true"
-              data-netlify-honeypot="bot-field"
-              // Alternative: For Web3Forms, replace with:
-              // action="https://api.web3forms.com/submit"
-              // method="POST"
             >
-              {/* Hidden input for Netlify */}
-              <input type="hidden" name="form-name" value="contact" />
-              {/* Alternative: For Web3Forms, add: */}
-              {/* <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_KEY" /> */}
+              {/* Web3Forms access key - replace with your own key from web3forms.com */}
+              <input type="hidden" name="access_key" value="63cb2dba-1713-43b1-b9a1-c79966b2b122" />
+              {/* Honeypot field for spam protection */}
               <div hidden>
                 <input name="bot-field" />
               </div>
