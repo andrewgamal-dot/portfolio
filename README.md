@@ -100,9 +100,7 @@ Custom styles are defined in `src/index.css` using Tailwind's `@layer` directive
 ## 📧 Contact
 
 - **Email**: andrewgamal477@gmail.com
-- **Phone**: +20 120 590 4783
-- **GitHub**: [github.com/andrewgamal](https://github.com/andrewgamal)
-- **LinkedIn**: [linkedin.com/in/andrewgamal](https://linkedin.com/in/andrewgamal)
+
 
 ## 🌟 About SilverCodeLine
 

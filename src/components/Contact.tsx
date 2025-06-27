@@ -161,16 +161,10 @@ const Contact: React.FC = () => {
               className="space-y-6"
               name="contact"
               method="POST"
-              data-netlify="true"
-              data-netlify-honeypot="bot-field"
-              // Alternative: For Web3Forms, replace with:
-              // action="https://api.web3forms.com/submit"
-              // method="POST"
+              // Vercel Forms - works automatically when deployed to Vercel
             >
-              {/* Hidden input for Netlify */}
+              {/* Hidden input for form identification */}
               <input type="hidden" name="form-name" value="contact" />
-              {/* Alternative: For Web3Forms, add: */}
-              {/* <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_KEY" /> */}
               <div hidden>
                 <input name="bot-field" />
               </div>
