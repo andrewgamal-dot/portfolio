@@ -1,42 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 const Contact: React.FC = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    subject: '',
-    message: ''
-  });
-
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    setSubmitStatus('idle');
-    
-    try {
-      // Netlify Forms will handle this automatically
-      // The form will be processed by Netlify when deployed
-      setSubmitStatus('success');
-      setFormData({ name: '', email: '', subject: '', message: '' });
-    } catch (error) {
-      console.error('Form submission error:', error);
-      setSubmitStatus('error');
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
-
   const contactInfo = [
     {
       icon: (
@@ -95,185 +59,58 @@ const Contact: React.FC = () => {
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-12">
+        <div className="max-w-4xl mx-auto">
           {/* Contact Information */}
-          <div className="space-y-8">
-            <div className="card">
-              <h3 className="text-2xl font-semibold text-gray-100 mb-6">
-                Let's Connect
-              </h3>
-              <p className="text-gray-300 mb-8 leading-relaxed">
-                Whether you have a project in mind, want to discuss potential collaborations, 
-                or just want to say hello, I'd love to hear from you. Feel free to reach out 
-                through any of the channels below.
-              </p>
-              
-              <div className="space-y-4">
-                {contactInfo.map((info, index) => (
-                  <a
-                    key={index}
-                    href={info.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center space-x-4 p-4 bg-dark-700 rounded-lg hover:bg-dark-600 transition-colors duration-200 group"
-                  >
-                    <div className="text-primary-400 group-hover:text-primary-300 transition-colors duration-200">
-                      {info.icon}
-                    </div>
-                    <div>
-                      <h4 className="text-gray-100 font-medium">{info.title}</h4>
-                      <p className="text-gray-300 text-sm">{info.value}</p>
-                    </div>
-                  </a>
-                ))}
-              </div>
-            </div>
-
-            {/* Availability */}
-            <div className="card">
-              <h3 className="text-xl font-semibold text-gray-100 mb-4">
-                Current Availability
-              </h3>
-              <div className="space-y-3">
-                <div className="flex items-center space-x-3">
-                  <div className="w-3 h-3 bg-green-400 rounded-full"></div>
-                  <span className="text-gray-300">Available for new projects</span>
-                </div>
-                <div className="flex items-center space-x-3">
-                  <div className="w-3 h-3 bg-yellow-400 rounded-full"></div>
-                  <span className="text-gray-300">Open to freelance opportunities</span>
-                </div>
-                <div className="flex items-center space-x-3">
-                  <div className="w-3 h-3 bg-blue-400 rounded-full"></div>
-                  <span className="text-gray-300">Interested in mentorship roles</span>
-                </div>
-              </div>
+          <div className="card mb-8">
+            <h3 className="text-2xl font-semibold text-gray-100 mb-6">
+              Let's Connect
+            </h3>
+            <p className="text-gray-300 mb-8 leading-relaxed">
+              Whether you have a project in mind, want to discuss potential collaborations, 
+              or just want to say hello, I'd love to hear from you. Feel free to reach out 
+              through any of the channels below.
+            </p>
+            
+            <div className="grid md:grid-cols-2 gap-4">
+              {contactInfo.map((info, index) => (
+                <a
+                  key={index}
+                  href={info.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center space-x-4 p-6 bg-dark-700 rounded-lg hover:bg-dark-600 transition-all duration-300 group hover:scale-105"
+                >
+                  <div className="text-primary-400 group-hover:text-primary-300 transition-colors duration-200">
+                    {info.icon}
+                  </div>
+                  <div>
+                    <h4 className="text-gray-100 font-medium">{info.title}</h4>
+                    <p className="text-gray-300 text-sm">{info.value}</p>
+                  </div>
+                </a>
+              ))}
             </div>
           </div>
 
-          {/* Contact Form */}
+          {/* Availability */}
           <div className="card">
-            <h3 className="text-2xl font-semibold text-gray-100 mb-6">
-              Send Me a Message
+            <h3 className="text-xl font-semibold text-gray-100 mb-6">
+              Current Availability
             </h3>
-            <form 
-              onSubmit={handleSubmit} 
-              className="space-y-6"
-              action="https://api.web3forms.com/submit"
-              method="POST"
-            >
-              {/* Web3Forms access key - replace with your own key from web3forms.com */}
-              <input type="hidden" name="access_key" value="63cb2dba-1713-43b1-b9a1-c79966b2b122" />
-              {/* Honeypot field for spam protection */}
-              <div hidden>
-                <input name="bot-field" />
+            <div className="grid md:grid-cols-3 gap-6">
+              <div className="flex items-center space-x-3 p-4 bg-dark-700 rounded-lg">
+                <div className="w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
+                <span className="text-gray-300">Available for new projects</span>
               </div>
-              <div className="grid md:grid-cols-2 gap-6">
-                <div>
-                  <label htmlFor="name" className="block text-gray-300 font-medium mb-2">
-                    Name
-                  </label>
-                  <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleInputChange}
-                    required
-                    className="w-full px-4 py-3 bg-dark-700 border border-dark-600 rounded-lg text-gray-100 placeholder-gray-400 focus:outline-none focus:border-primary-500 transition-colors duration-200"
-                    placeholder="Your name"
-                  />
-                </div>
-                <div>
-                  <label htmlFor="email" className="block text-gray-300 font-medium mb-2">
-                    Email
-                  </label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleInputChange}
-                    required
-                    className="w-full px-4 py-3 bg-dark-700 border border-dark-600 rounded-lg text-gray-100 placeholder-gray-400 focus:outline-none focus:border-primary-500 transition-colors duration-200"
-                    placeholder="your.email@example.com"
-                  />
-                </div>
+              <div className="flex items-center space-x-3 p-4 bg-dark-700 rounded-lg">
+                <div className="w-3 h-3 bg-yellow-400 rounded-full animate-pulse"></div>
+                <span className="text-gray-300">Open to freelance opportunities</span>
               </div>
-              
-              <div>
-                <label htmlFor="subject" className="block text-gray-300 font-medium mb-2">
-                  Subject
-                </label>
-                <input
-                  type="text"
-                  id="subject"
-                  name="subject"
-                  value={formData.subject}
-                  onChange={handleInputChange}
-                  required
-                  className="w-full px-4 py-3 bg-dark-700 border border-dark-600 rounded-lg text-gray-100 placeholder-gray-400 focus:outline-none focus:border-primary-500 transition-colors duration-200"
-                  placeholder="What's this about?"
-                />
+              <div className="flex items-center space-x-3 p-4 bg-dark-700 rounded-lg">
+                <div className="w-3 h-3 bg-blue-400 rounded-full animate-pulse"></div>
+                <span className="text-gray-300">Interested in mentorship roles</span>
               </div>
-              
-              <div>
-                <label htmlFor="message" className="block text-gray-300 font-medium mb-2">
-                  Message
-                </label>
-                <textarea
-                  id="message"
-                  name="message"
-                  value={formData.message}
-                  onChange={handleInputChange}
-                  required
-                  rows={6}
-                  className="w-full px-4 py-3 bg-dark-700 border border-dark-600 rounded-lg text-gray-100 placeholder-gray-400 focus:outline-none focus:border-primary-500 transition-colors duration-200 resize-none"
-                  placeholder="Tell me about your project or what you'd like to discuss..."
-                ></textarea>
-              </div>
-              
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                className="w-full btn-primary py-3 text-lg disabled:opacity-50 disabled:cursor-not-allowed"
-              >
-                {isSubmitting ? (
-                  <span className="flex items-center justify-center">
-                    <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                    </svg>
-                    Sending...
-                  </span>
-                ) : (
-                  'Send Message'
-                )}
-              </button>
-
-              {/* Status Messages */}
-              {submitStatus === 'success' && (
-                <div className="mt-4 p-4 bg-green-900 border border-green-700 rounded-lg">
-                  <div className="flex items-center">
-                    <svg className="w-5 h-5 text-green-400 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                    </svg>
-                    <span className="text-green-300">Thank you for your message! I'll get back to you soon.</span>
-                  </div>
-                </div>
-              )}
-
-              {submitStatus === 'error' && (
-                <div className="mt-4 p-4 bg-red-900 border border-red-700 rounded-lg">
-                  <div className="flex items-center">
-                    <svg className="w-5 h-5 text-red-400 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
-                    </svg>
-                    <span className="text-red-300">Sorry, there was an error sending your message. Please try again or contact me directly via email.</span>
-                  </div>
-                </div>
-              )}
-            </form>
+            </div>
           </div>
         </div>
       </div>

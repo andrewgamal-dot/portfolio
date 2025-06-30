@@ -131,12 +131,9 @@ const Footer: React.FC = () => {
           <div className="text-center mt-6">
             <p className="text-gray-500 text-xs">
               Proudly building the future of tech education with{' '}
-              <a
-                href="#"
-                className="text-primary-400 hover:text-primary-300 transition-colors duration-200"
-              >
+              <span className="text-primary-400">
                 SilverCodeLine
-              </a>
+              </span>
             </p>
           </div>
         </div>
