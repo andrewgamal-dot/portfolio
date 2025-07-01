@@ -19,8 +19,8 @@ const Contact: React.FC = () => {
         </svg>
       ),
       title: "Phone",
-      value: "+20 120 590 4783",
-      link: "tel:+201205904783"
+      value: "+20 12********",
+      link: "tel:+2012********"
     },
     {
       icon: (
