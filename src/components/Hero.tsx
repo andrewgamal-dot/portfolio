@@ -52,13 +52,8 @@ const Hero: React.FC = () => {
       <div
         className="absolute z-20"
         style={{
-          top: '2rem',
-          right: '2.5rem',
-          // Responsive adjustments
-          ...(window.innerWidth >= 640 ? { top: '3rem', right: '3.5rem' } : {}),
-          ...(window.innerWidth >= 768 ? { top: '4rem', right: '5rem' } : {}),
-          ...(window.innerWidth >= 1024 ? { top: '5rem', right: '7rem' } : {}),
-          ...(window.innerWidth >= 1280 ? { top: '6rem', right: '9rem' } : {}),
+          top: 'clamp(2rem, 6vw, 6rem)',
+          right: 'clamp(1.5rem, 8vw, 9rem)'
         }}
       >
         <div className="relative group">
@@ -66,7 +61,7 @@ const Hero: React.FC = () => {
           <img
             src={profileImg}
             alt="Andrew Gamal profile"
-            className="w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 lg:w-36 lg:h-36 xl:w-40 xl:h-40 object-cover animate-fade-in hover:scale-105 transition-all duration-500"
+            className="aspect-square h-auto w-20 sm:w-28 md:w-32 lg:w-36 xl:w-40 max-w-xs object-cover animate-fade-in hover:scale-105 transition-all duration-500"
             style={{
               clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)',
               filter: 'drop-shadow(0 10px 25px rgba(0, 0, 0, 0.4)) brightness(1.05) contrast(1.05)',
@@ -74,6 +69,7 @@ const Hero: React.FC = () => {
               transform: 'rotate(-8deg)',
               objectPosition: 'top'
             }}
+            sizes="(max-width: 640px) 5rem, (max-width: 1024px) 8rem, 10rem"
           />
           
           {/* Subtle Glow Effect - Mobile Optimized */}
